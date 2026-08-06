@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="rig-deviate — plus/minus thirty sigma deviation ladder">
+  <defs>
+    <linearGradient id="bg-rd" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0A0806"/>
+      <stop offset="50%" stop-color="#110E0A"/>
+      <stop offset="100%" stop-color="#0A0806"/>
+    </linearGradient>
+    <linearGradient id="gold-rd" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C8A96E"/>
+      <stop offset="100%" stop-color="#E8D5A8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="300" fill="url(#bg-rd)"/>
+
+  <!-- Title -->
+  <text x="80" y="68" fill="#F4F1EA" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="400">rig-deviate</text>
+  <text x="80" y="96" fill="#8A8075" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" letter-spacing="1.5">±30σ DEVIATION LADDER</text>
+
+  <!-- Sigma ladder -->
+  <g transform="translate(120, 170)">
+    <!-- Axis -->
+    <line x1="0" y1="60" x2="960" y2="60" stroke="#3A3530" stroke-width="2"/>
+
+    <!-- Ticks from -30 to +30 -->
+    <g stroke="#5A544D" stroke-width="1">
+      <line x1="0" y1="50" x2="0" y2="70"/>
+      <line x1="160" y1="55" x2="160" y2="65"/>
+      <line x1="320" y1="50" x2="320" y2="70"/>
+      <line x1="480" y1="55" x2="480" y2="65"/>
+      <line x1="640" y1="50" x2="640" y2="70"/>
+      <line x1="800" y1="55" x2="800" y2="65"/>
+      <line x1="960" y1="50" x2="960" y2="70"/>
+    </g>
+
+    <!-- Labels -->
+    <text x="0" y="88" text-anchor="middle" fill="#8A8075" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">-30σ</text>
+    <text x="320" y="88" text-anchor="middle" fill="#8A8075" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">-10σ</text>
+    <text x="480" y="88" text-anchor="middle" fill="#C8A96E" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="12" font-weight="700">0σ</text>
+    <text x="640" y="88" text-anchor="middle" fill="#8A8075" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">+10σ</text>
+    <text x="960" y="88" text-anchor="middle" fill="#8A8075" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">+30σ</text>
+
+    <!-- Engine codenames at sigma positions -->
+    <!-- -30σ GRAVITON -->
+    <circle cx="0" cy="60" r="5" fill="#C8A96E"/>
+    <text x="0" y="30" text-anchor="middle" fill="#C8A96E" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="13" font-weight="700">GRAVITON</text>
+
+    <!-- -22σ ANCHOR -->
+    <circle cx="117" cy="60" r="4" fill="#8A8075"/>
+    <text x="117" y="38" text-anchor="middle" fill="#A89E90" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">ANCHOR</text>
+
+    <!-- -14σ FORGE -->
+    <circle cx="235" cy="60" r="4" fill="#8A8075"/>
+    <text x="235" y="90" text-anchor="middle" fill="#A89E90" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">FORGE</text>
+
+    <!-- -6σ BELL -->
+    <circle cx="373" cy="60" r="4" fill="#8A8075"/>
+    <text x="373" y="38" text-anchor="middle" fill="#A89E90" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">BELL</text>
+
+    <!-- +6σ VOLT -->
+    <circle cx="587" cy="60" r="4" fill="#8A8075"/>
+    <text x="587" y="90" text-anchor="middle" fill="#A89E90" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">VOLT</text>
+
+    <!-- +14σ ECHO -->
+    <circle cx="725" cy="60" r="4" fill="#8A8075"/>
+    <text x="725" y="38" text-anchor="middle" fill="#A89E90" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">ECHO</text>
+
+    <!-- +22σ SHIELD -->
+    <circle cx="843" cy="60" r="4" fill="#8A8075"/>
+    <text x="843" y="90" text-anchor="middle" fill="#A89E90" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="11">SHIELD</text>
+
+    <!-- +30σ SURPRISE -->
+    <circle cx="960" cy="60" r="5" fill="#C8A96E"/>
+    <text x="960" y="30" text-anchor="middle" fill="#C8A96E" font-family="'SF Mono', Monaco, 'Courier New', monospace" font-size="13" font-weight="700">SURPRISE</text>
+
+    <!-- Curved distribution hint -->
+    <path d="M0 55 Q160 45 320 52 Q400 56 480 58 Q560 56 640 52 Q800 45 960 55" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.18"/>
+  </g>
+
+  <!-- Bottom rule -->
+  <line x1="80" y1="280" x2="1120" y2="280" stroke="#C8A96E" stroke-width="1" opacity="0.2"/>
+</svg>
