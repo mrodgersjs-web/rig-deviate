@@ -1,52 +1,89 @@
-# RIG Deviate — Push AI output past the generic median
+<div align="center">
+  <img src="assets/rig-deviate-hero.png" width="100%" />
+</div>
 
-`rig-deviate` is a public, deterministic toolkit that implements the RIG Deviation Engine System (DES). It gives you 40 orthogonal lenses for pushing an artifact away from the generic LLM median — and a Robust-MAD-Z scorer for measuring how far it deviated.
+<br/>
 
-## The idea
+<div align="center">
+  <h3>RIG Deviate</h3>
+  <p><em>Push AI output past the generic median.</em></p>
+</div>
 
-Large language models are gravity wells. Ask them for copy, code, strategy, or design and they collapse toward the polished, safe, forgettable median. The DES fights that gravity with 40 named deviation engines, each tuned to a specific failure mode of generic output.
+<div align="center">
 
-Every engine runs on a **±30σ ladder** with 14 anchored rungs:
+![status](https://img.shields.io/badge/status-deterministic-C8A96E?style=flat-square&labelColor=0A0806)
+![python](https://img.shields.io/badge/python-3.9%2B-C8A96E?style=flat-square&labelColor=0A0806)
+![pypi](https://img.shields.io/badge/pypi-rig--deviate-C8A96E?style=flat-square&labelColor=0A0806)
+![license](https://img.shields.io/badge/license-MIT-C8A96E?style=flat-square&labelColor=0A0806)
 
-```
--30  -20  -10   -5   -3   -1    0   +1   +3   +5  +10  +20  +30
-  |----|----|----|----|----|----|----|----|----|----|----|----|
-negative pole              generic median              positive pole
-```
+</div>
 
-- **Negative σ** pulls the artifact *toward* the generic median.
-- **0σ** is the median itself.
-- **Positive σ** pushes it *away* from the median along that engine's axis.
-- Cognitive and Nature engines operate on a soft **±20σ** scale.
-- Physics engines are hard **±30σ** state gates: a negative pole is a BLOCK, not a soft nudge.
+<br/>
 
-## Install
+> 🥇 Large language models are gravity wells. Ask for copy, code, strategy, or design and they collapse toward the polished, safe, forgettable median. `rig-deviate` fights that gravity with 40 named engines and a deterministic scorer for how far you actually moved.
+
+## 60-second install
 
 ```bash
 pip install rig-deviate
 ```
-
-## Quick start
 
 ```python
 from rig_deviate import deviate, score
 
 seed = "Our product helps teams collaborate better."
 
-# Push away from generic gravity
-result = deviate(seed, "GRAVITON", 10)
-print(result)
-
-# Add mechanism density
-result = deviate(seed, "FORGE", 10)
-print(result)
-
-# Score the deviation
+result = deviate(seed, "GRAVITON", 10)   # push away from generic gravity
 report = score(result)
 print(report["rig_l"], report["rig_l_label"])
 ```
 
-## The 40 engines
+## How it works
+
+<div align="center">
+  <img src="assets/architecture.svg" width="100%" alt="RIG Deviate architecture: seed text passes through one of 40 orthogonal engines along a ±30σ ladder, then a Robust-MAD-Z scorer grades the deviation" />
+</div>
+
+<sub align="center">seed → engine(σ) → deviated artifact → Robust-MAD-Z score → RIG-L grade</sub>
+
+Every engine runs on a **±30σ ladder** with 14 anchored rungs — negative σ pulls *toward* the median, 0σ is the median, positive σ pushes *away* along that engine's axis. Cognitive and Nature engines operate on a soft ±20σ scale; Physics engines are hard ±30σ state gates, where the negative pole is a BLOCK, not a soft nudge.
+
+```text
+-30  -20  -10   -5   -3   -1    0   +1   +3   +5  +10  +20  +30
+  |----|----|----|----|----|----|----|----|----|----|----|----|
+negative pole              generic median              positive pole
+```
+
+## Results: the score system
+
+`rig-deviate` uses **Robust-MAD-Z** instead of a normal z-score because the generic-LLM baseline is not Gaussian and is full of outliers:
+
+```text
+MAD = median(|x_i - median(x)|)
+Robust-MAD-Z = 0.6745 * (score - median(baseline)) / max(MAD, 5.0)
+```
+
+Per-engine σ values combine into a composite **RIG-L** grade:
+
+| RIG-L | σ range | Meaning |
+| :-- | :-- | :-- |
+| `block` | < 3σ | Still generic or unsafe |
+| `marginal` | 3–5σ | Borderline |
+| `review` | 5–10σ | Promising, needs human review |
+| `promote` | 10–20σ | Strong deviation |
+| **`doctrine_artifact`** | **≥ 20σ** | **Exceptional, civilization-grade output** |
+
+## Why it exists
+
+- **40 orthogonal lenses**, each tuned to a specific failure mode of generic output
+- **Fully deterministic** — regex and arithmetic only, no network calls, no model inference, no API keys
+- **CI-safe** — suitable for gates, pre-commit hooks, and automated evaluation pipelines
+- **Measurable, not aesthetic** — every deviation ships with a Robust-MAD-Z score against a baseline corpus
+
+<details>
+<summary><strong>The 40 engines</strong></summary>
+
+<br/>
 
 | # | Codename | Layer | Full name | Positive pole |
 |---|----------|-------|-----------|---------------|
@@ -91,18 +128,14 @@ print(report["rig_l"], report["rig_l_label"])
 | 39 | **BELL** | Physics | Entanglement | genuine coupled-system effect |
 | 40 | **ZEROPOINT** | Physics | Vacuum Fluctuation | healthy baseline variance present |
 
-## Usage examples
+</details>
 
-### Apply one engine
+<details>
+<summary><strong>Usage examples</strong></summary>
 
-```python
-from rig_deviate import deviate
+<br/>
 
-print(deviate("We should optimize the funnel.", "FORGE", 10))
-# → adds causal/mechanistic language
-```
-
-### Apply every engine
+**Apply every engine:**
 
 ```python
 from rig_deviate import deviate_all
@@ -112,7 +145,7 @@ for code, text in variants.items():
     print(f"{code}: {text}")
 ```
 
-### Score an artifact
+**Score an artifact:**
 
 ```python
 from rig_deviate import score
@@ -123,9 +156,7 @@ print(report["rig_l_label"])  # block | marginal | review | promote | doctrine_a
 print(report["weakest_gate"]) # lowest-scoring engine
 ```
 
-The `score` function extracts deterministic lexical features (cliché density, hedge density, evidence density, mechanism density, etc.), computes a per-engine raw score, and Robust-MAD-Z's it against a baseline corpus.
-
-### Use a custom baseline
+**Use a custom baseline:**
 
 ```python
 from rig_deviate import score
@@ -137,31 +168,15 @@ baselines = {
 report = score("...", baselines=baselines)
 ```
 
-## The score system
+</details>
 
-RIG Deviate uses **Robust-MAD-Z** instead of a normal z-score because the generic-LLM baseline is not Gaussian and is full of outliers:
+## Documentation
 
-```
-MAD = median(|x_i - median(x)|)
-Robust-MAD-Z = 0.6745 * (score - median(baseline)) / max(MAD, 5.0)
-```
+| Resource | Description |
+| :-- | :-- |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution guide |
+| [LICENSE](LICENSE) | MIT |
 
-Per-engine σ values are combined into a composite **RIG-L** score:
+---
 
-- `block` — below 3σ; artifact is still generic or unsafe.
-- `marginal` — 3–5σ; borderline.
-- `review` — 5–10σ; promising, needs human review.
-- `promote` — 10–20σ; strong deviation.
-- `doctrine_artifact` — ≥20σ; exceptional, civilization-grade output.
-
-## Deterministic, no LLM required
-
-`rig-deviate` is fully deterministic. The `deviate()` transform and `score()` extractor run with regex and arithmetic only — no network calls, no model inference, no API keys. This makes it suitable for CI gates, pre-commit hooks, and automated evaluation pipelines.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+<div align="center"><sub>Built by Mike Rodgers · Forward Deployed Engineer · <a href="https://rodgersintelligence.com">rodgersintelligence.com</a></sub></div>
