@@ -1,0 +1,87 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;fill:#C8A96E;letter-spacing:3px;text-transform:uppercase}
+      .title{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:27px;fill:#F5F0EB}
+      .label{font-family:'Hanken Grotesk','Helvetica Neue',sans-serif;font-size:12px;fill:#F5F0EB;letter-spacing:1.5px}
+      .label-dim{font-family:'Hanken Grotesk','Helvetica Neue',sans-serif;font-size:11px;fill:#A09890;letter-spacing:1px}
+      .mono{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10.5px;fill:#A09890}
+      .mono-gold{font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;fill:#C8A96E}
+      .caption{font-family:'JetBrains Mono',monospace;font-size:10px;fill:#635D57;letter-spacing:2px;text-transform:uppercase}
+    </style>
+    <radialGradient id="glowStrong" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C8A96E" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#C8A96E" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#C8A96E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="zoneOuter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C8A96E" stop-opacity="0"/>
+      <stop offset="88%" stop-color="#C8A96E" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#C8A96E" stop-opacity="0.06"/>
+    </radialGradient>
+    <radialGradient id="ambient" cx="50%" cy="48%" r="65%">
+      <stop offset="0%" stop-color="#181310" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0A0806" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="400" fill="url(#ambient)"/>
+
+  <text x="60" y="42" class="kicker">RIG-DEVIATE</text>
+  <text x="60" y="72" class="title">Forty engines, one deviation ladder</text>
+
+  <g transform="translate(600,225)">
+    <!-- physics outer -->
+    <circle r="150" fill="url(#zoneOuter)"/>
+    <circle r="150" fill="none" stroke="#A09890" stroke-width="1" stroke-dasharray="1 5" opacity="0.5"/>
+    <!-- nature middle -->
+    <circle r="102" fill="none" stroke="#A09890" stroke-width="1" stroke-dasharray="1 5" opacity="0.6"/>
+    <!-- cognitive inner -->
+    <circle r="56" fill="none" stroke="#C8A96E" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.65"/>
+
+    <!-- sigma axis -->
+    <line x1="-520" y1="0" x2="520" y2="0" stroke="#A09890" stroke-width="1" opacity="0.18"/>
+
+    <!-- median glowing center -->
+    <circle r="30" fill="url(#glowStrong)"/>
+    <circle r="13" fill="#F5F0EB" filter="url(#softGlow)"/>
+    <text y="-70" text-anchor="middle" class="mono-gold" font-size="12">MEDIAN</text>
+    <text y="46" text-anchor="middle" class="mono" font-size="10">0σ</text>
+
+    <!-- zone labels -->
+    <text x="0" y="-58" text-anchor="middle" class="label-dim" font-size="10" opacity="0.9">COGNITIVE</text>
+    <text x="0" y="-104" text-anchor="middle" class="label-dim" font-size="10" opacity="0.75">NATURE</text>
+    <text x="0" y="-152" text-anchor="middle" class="label-dim" font-size="10" opacity="0.6">PHYSICS</text>
+  </g>
+
+  <!-- sigma tick marks across full width -->
+  <g transform="translate(600,335)">
+    <line x1="-540" y1="0" x2="540" y2="0" stroke="#A09890" stroke-width="1" opacity="0.25"/>
+    <g font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#A09890" text-anchor="middle">
+      <line x1="-540" y1="-5" x2="-540" y2="5" stroke="#C17767" stroke-width="1.5"/>
+      <text x="-540" y="20" fill="#C17767">-30σ</text>
+      <line x1="-360" y1="-4" x2="-360" y2="4" stroke="#A09890"/>
+      <text x="-360" y="20">-20σ</text>
+      <line x1="-180" y1="-4" x2="-180" y2="4" stroke="#A09890"/>
+      <text x="-180" y="20">-10σ</text>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#C8A96E" stroke-width="1.5"/>
+      <text x="0" y="20" fill="#C8A96E">0σ</text>
+      <line x1="180" y1="-4" x2="180" y2="4" stroke="#A09890"/>
+      <text x="180" y="20">+10σ</text>
+      <line x1="360" y1="-4" x2="360" y2="4" stroke="#A09890"/>
+      <text x="360" y="20">+20σ</text>
+      <line x1="540" y1="-5" x2="540" y2="5" stroke="#C8A96E" stroke-width="1.5"/>
+      <text x="540" y="20" fill="#C8A96E">+30σ</text>
+    </g>
+  </g>
+
+  <text x="1140" y="150" text-anchor="end" class="label-dim">40 ENGINES</text>
+  <text x="1140" y="167" text-anchor="end" class="mono">14 anchored rungs each</text>
+
+  <line x1="60" y1="356" x2="1140" y2="356" stroke="#A09890" stroke-width="1" opacity="0.12"/>
+  <text x="60" y="378" class="caption">escape the generic median, deliberately</text>
+</svg>
