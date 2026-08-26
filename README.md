@@ -1,4 +1,5 @@
 <div align="center">
+<p align="center"><img src="docs/rig-deviate-demo.gif" alt="rig-deviate demo" width="720" /></p>
   <img src="assets/rig-deviate-hero.png" width="100%" />
 </div>
 
