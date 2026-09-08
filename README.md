@@ -14,7 +14,7 @@
 
 ![status](https://img.shields.io/badge/status-deterministic-C8A96E?style=flat-square&labelColor=0A0806)
 ![python](https://img.shields.io/badge/python-3.9%2B-C8A96E?style=flat-square&labelColor=0A0806)
-![pypi](https://img.shields.io/badge/pypi-rig--deviate-C8A96E?style=flat-square&labelColor=0A0806)
+[![CI](https://img.shields.io/github/actions/workflow/status/mrodgersjs-web/rig-deviate/smoke.yml?branch=main)](https://github.com/mrodgersjs-web/rig-deviate/actions/workflows/smoke.yml)
 ![license](https://img.shields.io/badge/license-MIT-C8A96E?style=flat-square&labelColor=0A0806)
 
 </div>
