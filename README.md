@@ -26,7 +26,7 @@
 ## 60-second install
 
 ```bash
-pip install rig-deviate
+pip install git+https://github.com/mrodgersjs-web/rig-deviate.git
 ```
 
 ```python
