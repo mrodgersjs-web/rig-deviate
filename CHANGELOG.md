@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   extras (pytest, pytest-cov, ruff), ruff rules on the py310 floor and
   coverage config; `test/test_packaging_config.py` asserts that config is
   present and points at importable code.
+- `test/test_readme_truth.py`: reads README.md and asserts its numbers (40
+  strategies, 13 strength levels, the ladder values) match the code.
 - CI workflow that runs lint and the test suite with coverage on push and pull request.
 - Community files: security policy, code of conduct, contributing guide, issue and pull request templates.
 - `docs/architecture.md` design notes and a runnable example under `examples/`.
