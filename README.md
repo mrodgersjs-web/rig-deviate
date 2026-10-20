@@ -4,7 +4,7 @@ Forty named ways to rewrite a draft, at thirteen strength settings, plus a score
 reports how far the result sits from generic AI writing. Made for writers and teams who
 want drafts that say something specific, with a number to back it up.
 
-[![CI](https://github.com/mrodgersjs-web/rig-deviate/actions/workflows/ci.yml/badge.svg)](https://github.com/mrodgersjs-web/rig-deviate/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/mrodgersjs-web/rig-deviate/ci.yml?branch=main&label=CI)](https://github.com/mrodgersjs-web/rig-deviate/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 
