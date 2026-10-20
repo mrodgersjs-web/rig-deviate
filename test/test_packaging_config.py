@@ -18,7 +18,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import tomllib
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python 3.10: same API from the tomli backport (dev extra)
+    import tomli as tomllib
 
 import rig_deviate.cli as cli
 
