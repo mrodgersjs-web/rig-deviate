@@ -14,7 +14,6 @@ from rig_deviate import (
 )
 from rig_deviate.engines import LAYER_COGNITIVE, LAYER_NATURE, LAYER_PHYSICS
 
-
 EXPECTED_ENGINES = 40
 
 
@@ -82,3 +81,73 @@ def test_score_features_extracted() -> None:
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
+
+def test_sigma_rungs_are_thirteen() -> None:
+    from rig_deviate.engines import SIGMA_RUNGS
+
+    assert len(SIGMA_RUNGS) == 13
+    assert SIGMA_RUNGS[0] == -30 and SIGMA_RUNGS[-1] == 30
+    assert 0 in SIGMA_RUNGS
+    assert tuple(sorted(SIGMA_RUNGS)) == SIGMA_RUNGS
+
+
+def test_engine_ids_unique_and_ordered() -> None:
+    ids = [e.id for e in ENGINES]
+    assert len(set(ids)) == 40
+
+
+def test_engine_lookup_by_code() -> None:
+    from rig_deviate.engines import ENGINE_BY_CODE
+
+    assert ENGINE_BY_CODE["GRAVITON"].codename == "GRAVITON"
+    assert "NOTANENGINE" not in ENGINE_BY_CODE
+
+
+def test_deviate_is_deterministic() -> None:
+    seed = "We provide innovative solutions for modern businesses."
+    a = deviate(seed, "FORGE", 7)
+    b = deviate(seed, "FORGE", 7)
+    assert a == b
+
+
+def test_deviate_zero_sigma_runs() -> None:
+    result = deviate("hello world", "GRAVITON", 0)
+    assert isinstance(result, str)
+
+
+def test_deviate_all_returns_every_engine() -> None:
+    from rig_deviate import deviate_all
+
+    results = deviate_all("A generic sentence about synergy.", 5)
+    assert len(results) == EXPECTED_ENGINES
+    assert set(results.keys()) == set(ENGINE_CODENAMES)
+
+
+def test_score_is_deterministic() -> None:
+    text = "We deliver value through integrated platforms."
+    assert score(text)["rig_l"] == score(text)["rig_l"]
+
+
+def test_cli_engines_lists_all(capsys) -> None:
+    from rig_deviate.cli import main
+
+    assert main(["engines"]) == 0
+    out = capsys.readouterr().out
+    assert "40 rewrite strategies, 13 strength levels" in out
+    assert "GRAVITON" in out
+
+
+def test_cli_rewrite_and_score(capsys) -> None:
+    from rig_deviate.cli import main
+
+    assert main(["rewrite", "hello world", "--engine", "GRAVITON", "--sigma", "5"]) == 0
+    assert capsys.readouterr().out.strip()
+    assert main(["score", "hello world"]) == 0
+    assert "rig_l:" in capsys.readouterr().out
+
+
+def test_cli_unknown_engine_is_usage_error(capsys) -> None:
+    from rig_deviate.cli import main
+
+    assert main(["rewrite", "hello", "--engine", "NOPE"]) == 2
