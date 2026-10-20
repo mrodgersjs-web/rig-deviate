@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- This commit adds .github/CODEOWNERS, which assigns @mrodgersjs-web as the code owner for every file in the repo.
+
 - This commit adds the `tomli` backport to the dev extra for Python 3.10 and has `test/test_packaging_config.py` fall back to it, because `tomllib` only exists from 3.11 and the 3.10 CI leg failed at import.
 
 ## [0.2.0] - 2026-10-19
