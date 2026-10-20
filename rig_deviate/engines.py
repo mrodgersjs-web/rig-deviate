@@ -1,10 +1,10 @@
 """rig_deviate.engines — the canonical RIG Deviation Engine roster.
 
-A clean, public-facing implementation of the 40-engine × 14-rung Deviation Engine
+A clean, public-facing implementation of 40 rewrite strategies across a 13-level strength ladder
 System (DES). Each engine is a deterministic lens that pushes an artifact away from
 the generic LLM median along a specific dimension.
 
-The ladder uses 14 anchored σ rungs:
+The ladder uses 13 anchored σ rungs:
 
     -30  -20  -10  -5  -3  -1   0  +1  +3  +5  +10  +20  +30
       |----|----|---|---|---|---|---|---|---|---|----|----|
@@ -16,7 +16,6 @@ BLOCK rather than a gentle nudge.
 """
 from __future__ import annotations
 
-import dataclasses
 import re
 from dataclasses import dataclass
 from typing import Any
@@ -47,14 +46,14 @@ class Engine:
 # ── L1 Cognitive: output-quality engines (±20σ) ──────────────────────────────
 _COGNITIVE = [
     Engine(1, "GRAVITON", LAYER_COGNITIVE, "Gravity Escape",
-           "Escape the generic AI gravity that pulls output toward the polished median.",
+           "Replace safe, generic phrasing with specific, concrete wording.",
            "bland, safe, forgettable", "surprising, category-defying, memorable"),
     Engine(2, "ANCHOR", LAYER_COGNITIVE, "Reality Anchor",
            "Tie every claim to observable evidence or explicit uncertainty.",
            "unsupported assertions, hand-waving", "evidence-dense, source-anchored"),
     Engine(3, "DARWIN", LAYER_COGNITIVE, "Evolutionary Selection",
            "Generate, mutate, and select — never accept the first draft.",
-           "single-candidate, first-draft thinking", "iterated, selected, pressure-tested"),
+           "single-candidate, first-draft thinking", "tested and selected"),
     Engine(4, "XRAY", LAYER_COGNITIVE, "Feynman X-Ray",
            "Expose fake understanding by forcing concrete, jargon-free explanation.",
            "vague jargon, fake expertise", "precise, concrete, explainable to a novice"),
@@ -65,13 +64,13 @@ _COGNITIVE = [
            "Break inherited orthodoxy when the inherited frame is wrong.",
            "conventional, category-compliant", "contrarian, frame-breaking, orthogonal"),
     Engine(7, "COLLIDER", LAYER_COGNITIVE, "Collision Collider",
-           "Import mechanisms from unrelated domains to create novel solutions.",
+           "Borrow mechanisms from unrelated domains to restate the idea.",
            "siloed, single-domain reasoning", "cross-domain recombination"),
     Engine(8, "VOLT", LAYER_COGNITIVE, "Voltage Reactor",
            "Create emotional voltage without manipulation.",
            "flat or manipulative affect", "genuinely felt stakes, no coercion"),
     Engine(9, "ECHO", LAYER_COGNITIVE, "Memory Residue",
-           "Optimize for what the reader remembers in 48 hours.",
+           "Aim at what the reader remembers in 48 hours.",
            "forgettable, low residue", "sticky, quotable, durable recall"),
     Engine(10, "HORIZON", LAYER_COGNITIVE, "Temporal Horizon Integrity",
             "Long-term compounding, optionality, and kill criteria.",
@@ -136,7 +135,7 @@ _NATURE = [
            "no transition from explore to exploit", "annealed convergence"),
     Engine(29, "CUCKOO", LAYER_NATURE, "Cuckoo Parasite",
            "Inject parasitic high-deviation candidates; abandon worst nests.",
-           "stuck in mediocrity", "disruptive variants pruned or promoted"),
+           "stuck in mediocrity", "strong variants pruned or promoted"),
     Engine(30, "REEF", LAYER_NATURE, "Coral Reef Evolver",
            "All five reproduction modes simultaneously per generation.",
            "low-diversity population", "maximal diversity with selection"),
