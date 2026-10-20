@@ -12,7 +12,8 @@ The 0.6745 constant restores a standard-normal scale at the median absolute devi
 from __future__ import annotations
 
 import statistics
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from .engines import ENGINE_BY_CODE, ENGINES, LAYER_COGNITIVE, LAYER_NATURE, Engine
 
